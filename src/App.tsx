@@ -4,12 +4,11 @@ import LogoutButton from "./component/LogoutButton";
 import Profile from "./component/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 function App() {
-  const { isLoading } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
   if (isLoading) return <div>Loading....</div>;
   return (
     <div className="App">
-      <LoginButton />
-      <LogoutButton />
+      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
       <Profile />
     </div>
   );
